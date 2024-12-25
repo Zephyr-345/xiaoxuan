@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多人游戏预约系统</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>多人游戏预约系统</h1>
+        <h2>Designed by xiaoxuan</h2>
+        
+        <!-- Position 1 -->
+        <div class="input-group">
+            <label for="player1-name">一号位置 昵称</label>
+            <input type="text" id="player1-name" placeholder="请输入昵称">
+            <label for="player1-time">时间</label>
+            <input type="time" id="player1-time">
+        </div>
+
+        <!-- Position 2 -->
+        <div class="input-group">
+            <label for="player2-name">二号位置 昵称</label>
+            <input type="text" id="player2-name" placeholder="请输入昵称">
+            <label for="player2-time">时间</label>
+            <input type="time" id="player2-time">
+        </div>
+
+        <!-- Position 3 -->
+        <div class="input-group">
+            <label for="player3-name">三号位置 昵称</label>
+            <input type="text" id="player3-name" placeholder="请输入昵称">
+            <label for="player3-time">时间</label>
+            <input type="time" id="player3-time">
+        </div>
+
+        <!-- Position 4 -->
+        <div class="input-group">
+            <label for="player4-name">四号位置 昵称</label>
+            <input type="text" id="player4-name" placeholder="请输入昵称">
+            <label for="player4-time">时间</label>
+            <input type="time" id="player4-time">
+        </div>
+
+        <!-- Position 5 -->
+        <div class="input-group">
+            <label for="player5-name">五号位置 昵称</label>
+            <input type="text" id="player5-name" placeholder="请输入昵称">
+            <label for="player5-time">时间</label>
+            <input type="time" id="player5-time">
+        </div>
+
+        <!-- Save Button -->
+        <button onclick="saveData()">保存信息</button>
+    </div>
+
+    <script>
+        // Save data to localStorage
+        function saveData() {
+            const data = {
+                player1: {
+                    name: document.getElementById('player1-name').value,
+                    time: document.getElementById('player1-time').value,
+                },
+                player2: {
+                    name: document.getElementById('player2-name').value,
+                    time: document.getElementById('player2-time').value,
+                },
+                player3: {
+                    name: document.getElementById('player3-name').value,
+                    time: document.getElementById('player3-time').value,
+                },
+                player4: {
+                    name: document.getElementById('player4-name').value,
+                    time: document.getElementById('player4-time').value,
+                },
+                player5: {
+                    name: document.getElementById('player5-name').value,
+                    time: document.getElementById('player5-time').value,
+                },
+            };
+
+            localStorage.setItem('gameReservationData', JSON.stringify(data));
+            alert('信息已保存！');
+        }
+
+        // Load data from localStorage
+        function loadData() {
+            const savedData = JSON.parse(localStorage.getItem('gameReservationData'));
+            if (savedData) {
+                document.getElementById('player1-name').value = savedData.player1.name || '';
+                document.getElementById('player1-time').value = savedData.player1.time || '';
+                document.getElementById('player2-name').value = savedData.player2.name || '';
+                document.getElementById('player2-time').value = savedData.player2.time || '';
+                document.getElementById('player3-name').value = savedData.player3.name || '';
+                document.getElementById('player3-time').value = savedData.player3.time || '';
+                document.getElementById('player4-name').value = savedData.player4.name || '';
+                document.getElementById('player4-time').value = savedData.player4.time || '';
+                document.getElementById('player5-name').value = savedData.player5.name || '';
+                document.getElementById('player5-time').value = savedData.player5.time || '';
+            }
+        }
+
+        // Load data on page load
+        window.onload = loadData;
+    </script>
+</body>
+</html>
